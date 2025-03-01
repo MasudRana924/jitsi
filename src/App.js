@@ -30,7 +30,7 @@ import axios from 'axios';
 import { JitsiMeeting } from '@jitsi/react-sdk';
 import io from 'socket.io-client';
 import { JITSI_DOMAIN } from './config';
-const socket = io('http://localhost:5000');
+const socket = io('https://jitsi-back.onrender.com');
 
 // Navbar Component
 const Navbar = ({ user, onLogout }) => {
@@ -287,7 +287,7 @@ const App = () => {
   useEffect(() => {
     // Fetch doctors list
     const fetchDoctors = async () => {
-      const response = await axios.get('http://localhost:5000/api/doctors');
+      const response = await axios.get('https://jitsi-back.onrender.com/api/doctors');
       setDoctors(response.data);
     };
     fetchDoctors();
@@ -337,7 +337,7 @@ const App = () => {
   }, []);
 
   const handleLogin = async (email, password) => {
-    const response = await axios.post('http://localhost:5000/api/login', { email, password });
+    const response = await axios.post('https://jitsi-back.onrender.com/api/login', { email, password });
     if (response.data.success) {
       setUser(response.data.user);
       socket.emit('userLogin', response.data.user.id);
