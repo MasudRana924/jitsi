@@ -11,24 +11,87 @@ const Success = () => {
     navigate("/");
   };
 
+  const containerStyles = {
+    minHeight: "100vh",
+    background: "linear-gradient(to bottom right, #eff6ff, #dbeafe)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "16px"
+  };
+
+  const cardStyles = {
+    backgroundColor: "white",
+    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+    borderRadius: "0.75rem",
+    padding: "32px",
+    textAlign: "center",
+    maxWidth: "28rem",
+    width: "100%"
+  };
+
+  const iconStyles = {
+    margin: "0 auto",
+    marginBottom: "24px",
+    color: "#10b981"
+  };
+
+  const headingStyles = {
+    fontSize: "1.875rem",
+    fontWeight: "bold",
+    color: "#1f2937",
+    marginBottom: "16px"
+  };
+
+  const paragraphStyles = {
+    marginBottom: "8px",
+    color: "#4b5563"
+  };
+
+  const buttonStyles = {
+    width: "100%",
+    backgroundColor: "#3b82f6",
+    color: "white",
+    fontWeight: "bold",
+    padding: "12px 16px",
+    borderRadius: "0.5rem",
+    transition: "all 0.3s ease-in-out",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    border: "none",
+    cursor: "pointer",
+    marginTop: "20px"
+  };
+
+  const buttonHoverStyles = {
+    ...buttonStyles,
+    backgroundColor: "#2563eb",
+    transform: "scale(1.05)"
+  };
+
+  const [isHovered, setIsHovered] = React.useState(false);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
-      <div className="bg-white shadow-2xl rounded-xl p-8 md:p-12 text-center max-w-md w-full">
+    <div style={containerStyles}>
+      <div style={cardStyles}>
         <CheckCircleIcon
-          className="mx-auto mb-6 text-green-500"
+          style={iconStyles}
           size={80}
           strokeWidth={1.5}
         />
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
+        <h1 style={headingStyles}>
           Meeting Ended Successfully!
         </h1>
-        <p>Thank you for using our telemedicine service.</p>
-        {duration && <p>Meeting Duration: {duration}</p>}
+        <p style={paragraphStyles}>Thank you for using our telemedicine service.</p>
+        {duration && <p style={paragraphStyles}>Meeting Duration: {duration}</p>}
         <button
           onClick={handleBackToHome}
-          className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center"
+          style={isHovered ? buttonHoverStyles : buttonStyles}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          <HomeIcon className="mr-2" size={20} />
+          <HomeIcon style={{ marginRight: "8px" }} size={20} />
           Back to Home
         </button>
       </div>
